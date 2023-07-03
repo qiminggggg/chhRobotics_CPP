@@ -6,7 +6,7 @@
 #define CHHROBOTICS_CPP_RRT_H
 
 #include <iostream>
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include<vector>
 #include<cmath>
 #include<algorithm>
