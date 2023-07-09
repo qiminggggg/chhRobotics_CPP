@@ -38,21 +38,22 @@ int main(){
     double radius=1.0; // 用于判断是否到达目标点
     double judge_distance=10; //若与障碍物的最小距离大于阈值（例如这里设置的阈值为robot_radius+0.2）,则设为一个较大的常值
     vector<Vector2d>obstacle;//障碍物位置
-    obstacle.push_back(Vector2d(-1, -1));
-    obstacle.push_back(Vector2d(0, 2));
-    obstacle.push_back(Vector2d(4, 2));
-    obstacle.push_back(Vector2d(5, 4));
-    obstacle.push_back(Vector2d(5,5));
-    obstacle.push_back(Vector2d(5,6));
-    obstacle.push_back(Vector2d(5,9));
-    obstacle.push_back(Vector2d(8,9));
-    obstacle.push_back(Vector2d(7,9));
-    obstacle.push_back(Vector2d(8,10));
-    obstacle.push_back(Vector2d(9,11));
-    obstacle.push_back(Vector2d(12,13));
-    obstacle.push_back(Vector2d(12,12));
-    obstacle.push_back(Vector2d(15,15));
-    obstacle.push_back(Vector2d(13,13));
+    vector<VectorXd> ref_trajectory;
+    // obstacle.push_back(Vector2d(-1, -1));
+    // obstacle.push_back(Vector2d(0, 2));
+    // obstacle.push_back(Vector2d(4, 2));
+    // obstacle.push_back(Vector2d(5, 4));
+    // obstacle.push_back(Vector2d(5,5));
+    // obstacle.push_back(Vector2d(5,6));
+    // obstacle.push_back(Vector2d(5,9));
+    // obstacle.push_back(Vector2d(8,9));
+    // obstacle.push_back(Vector2d(7,9));
+    // obstacle.push_back(Vector2d(8,10));
+    // obstacle.push_back(Vector2d(9,11));
+    // obstacle.push_back(Vector2d(12,13));
+    // obstacle.push_back(Vector2d(12,12));
+    // obstacle.push_back(Vector2d(15,15));
+    // obstacle.push_back(Vector2d(13,13));
 
 
     vector<VectorXd >trajectory;
@@ -74,10 +75,13 @@ int main(){
         plt::clf();
         plt::plot(vector<double>{state(0)},vector<double>{state(1)},"xr");
         plt::plot(vector<double>{goal(0)},vector<double>{goal(1)},"xb");//目标
-        for(Vector2d obs:obstacle){//障碍物
-            plt::plot(vector<double>{obs(0)},vector<double>{obs(1)},"ok");
-        }
-        plotArrow(state(0),state(1),state(2));
+        // for(Vector2d obs:obstacle){//障碍物
+        //     plt::plot(vector<double>{obs(0)},vector<double>{obs(1)},"ok");
+        // }
+        double ref_x[2] = {1, 10};
+        double ref_y[2] = {-1, 10};
+        plt::plot(ref_x, ref_y,"k");
+        plotArrow(state(0), state(1), state(2));
         plotRobot(state(0), state(1), state(2), radius);
 
         for(VectorXd s:res.second){//画出推算的轨迹
